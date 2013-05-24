@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+	  
+.origin_source {
+	display:none;
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+	color: #4f6b72; 
+	border-right: 1px solid #C1DAD7; 
+	border-bottom: 1px solid #C1DAD7; 
+	border-top: 1px solid #C1DAD7; 
+	letter-spacing: 2px; 
+	text-transform: uppercase; 
+	text-align: left; 
+	padding: 6px 6px 6px 12px; 
+	background: #CAE8EA  no-repeat; 
+}
+.trans_source {
+	
+}
+
+
+</style>
+  <body>
+ 
+	  <div>
+		  	<div id='show_e_btn' style='float:left;'>显示原文</div>
+			<div  style='float:left;'>--</div>
+			<div id='hide_e_btn' style='float:left;'>隐藏原文</div>
+	  </div>
+	  
+
+	  <br><br><br><br>
+	  
+    <textarea id="text-input" oninput="this.editor.update()"
+              rows="6" cols="60">Type **Markdown** here.</textarea>
+    <div id="preview"> </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="lib/markdown.js"></script>
+    <script>
+
+ 
+
+	  $(function(){
+
+
+		   function Editor(input, preview)
+	       {
+	         this.update = function () {
+	           // preview.innerHTML = markdown.toHTML(input.value);
+			   preview.innerHTML = markdown.toTrans(input.value);
+	         }
+	         input.editor = this;
+	         this.update();
+	       }
+
+		   $.get('../2. Setting up a New Project.md',function(r){
+			   // alert(r);
+		   });
+
+
+
+		  setTimeout(function(){
+		  	// $('#text-input').load('2013-03-01-director-scene-layer-and-sprite.markdown');
+
+			new Editor(document.getElementById("text-input"), document.getElementById("preview"));
+
+
+		  },100);
+		  // $('#text-input').load('2013-03-01-director-scene-layer-and-sprite.markdown');
+
+		  
+		  $('#show_e_btn').click(function(){
+			  $('.origin_source').show();
+		  });
+		  
+		  $('#hide_e_btn').click(function(){
+			  $('.origin_source').hide();
+		  });
+	 
+	  });
+    </script>
+  </body>
+</html>
